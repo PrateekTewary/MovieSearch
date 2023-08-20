@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= movie.title %> Details</title>
+  <!-- Add Bootstrap CSS link here -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+    }
+    .movie-card {
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+    .movie-image {
+      max-width: 100%;
+      height: auto;
+    }
+    .movie-details {
+      margin-top: 20px;
+    }
+    .movie-title {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .movie-cast {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .movie-year {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .comments-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+    .comment-card {
+      background-color: #f8f9fa;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .comment-user {
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .comment-text {
+      font-size: 14px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="movie-card">
+          <div class="movie-image">
+            <img src="<%= movie.image %>" alt="<%= movie.title %>" class="img-fluid">
+          </div>
+          <div class="movie-details">
+            <h1 class="movie-title"><%= movie.title %></h1>
+            <p class="movie-cast">Cast: <%= movie.cast %></p>
+            <p class="movie-year">Year: <%= movie.year %></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h2 class="comments-title">Comments</h2>
+        <% movie.comments.forEach(comment => { %>
+          <div class="comment-card">
+            <p class="comment-user"><%= comment.userName %></p>
+            <p class="comment-text"><%= comment.comment %></p>
+            <p class="text-muted"><%= comment.createdAt.toDateString() %></p>
+          </div>
+        <% }); %>
+        
+        <h2>Add a Comment</h2>
+        <form method="POST" action="/search/<%= movie._id  %>/comment">
+          <div class="form-group">
+            <input type="text" class="form-control" name="userName" placeholder="Your Name" required>
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" name="comment" placeholder="Your Comment" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Add Comment</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Add Bootstrap JS and jQuery links here if needed -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

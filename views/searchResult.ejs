@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Search</title>
+    <!-- Add Bootstrap CSS link here -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .card-columns {
+            column-count: 3;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Results</h1>
+        <div class="card-columns">
+            <% for (let res of results) { %>
+                
+                <div class="card">
+                    
+                    <img src="<%= res.image %>" class="card-img-top" alt="<%= res.title %>">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= res.title %></h5>
+                        <p class="card-text"><strong>Year:</strong> <%= res.year %></p>
+                        <!-- Add any other movie details you want to display here -->
+                        <form action="/search/<%= res._id %>" method="GET">
+                            <button type="submit">View movie</button>
+                        </form> 
+                    </div>
+                </div>
+            
+            <% } %>
+        </div>
+        <button id="loadMoreBtn" class="btn btn-primary mt-4" onclick="loadMoreResults()">Load More</button>
+    </div>
+    <!-- Add Bootstrap JS and jQuery links here if needed -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        let currentPage = 1; // Keeps track of the current page
+
+        function loadMoreResults() {
+            // Implement your logic to load more results here
+            // You might want to make an AJAX request to fetch more data and append it to the results div
+            currentPage++; // Increment the current page after loading more results
+        }
+    </script>
+</body>
+</html>

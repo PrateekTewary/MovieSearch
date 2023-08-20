@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= movie.title %> Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .movie-container {
+      display: flex;
+      align-items: center;
+      margin: 20px;
+    }
+    .movie-image {
+      flex: 1;
+      max-width: 400px;
+      margin-right: 20px;
+    }
+    .movie-details {
+      flex: 2;
+    }
+    .movie-title {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .movie-cast {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    .movie-year {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    .comments-button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="movie-container">
+    <div class="movie-image">
+      <img src="<%= movie.image %>" alt="<%= movie.title %>">
+    </div>
+    <div class="movie-details">
+      <h1 class="movie-title"><%= movie.title %></h1>
+      <p class="movie-cast">Cast: <%= movie.cast.join(', ') %></p>
+      <p class="movie-year">Year: <%= movie.year %></p>
+    
+    <form action="/search/<%= movie._id %>/comments" method="POST">
+    
+    </form>
+    </div>
+  </div>
+</body>
+</html>
